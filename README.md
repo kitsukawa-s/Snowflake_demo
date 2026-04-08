@@ -15,3 +15,5 @@ CREATE OR REPLACE API INTEGRATION GITHUB_API_INT
     API_ALLOWED_PREFIXES = ('https://github.com/kitsukawa-s/Snowflake_demo')
     ENABLED = TRUE;
 ```
+
+これはテストです。
