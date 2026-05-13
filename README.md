@@ -16,4 +16,21 @@ CREATE OR REPLACE API INTEGRATION GITHUB_API_INT
     ENABLED = TRUE;
 ```
 
-これはテストです。
+## 橘川備忘録 PAT認証
+```sql
+-- Secret を格納するスキーマを用意
+USE DATABASE USER$SKITSUKAWA;
+USE SCHEMA USER$SKITSUKAWA.LOCAL;
+
+-- GitHub PAT を Secret として作成
+CREATE OR REPLACE SECRET github_token
+    TYPE = PASSWORD
+    USERNAME = 'kitsukawa-s'        -- GitHub ユーザー名
+    PASSWORD = 'github_pat_xxx';   -- GitHub PAT
+
+CREATE OR REPLACE API INTEGRATION github_api_int
+    API_PROVIDER = git_https_api
+    API_ALLOWED_PREFIXES = ('https://github.com/kitsukawa-s/Snowflake_demo')
+    ALLOWED_AUTHENTICATION_SECRETS = (github_token)
+    ENABLED = TRUE;
+```
